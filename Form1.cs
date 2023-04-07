@@ -297,7 +297,7 @@ namespace EditProdProj
 
         private async void button9_Click(object sender, EventArgs e)
         {
-             string[] FileNames = Directory.GetFiles(@"C:\Users\radaa\Documents\FACULTATE3\Capture.PNG");
+             string[] FileNames = Directory.GetFiles(@"C:\Users\radaa\Documents\FACULTATE3\FacultaSem2\LabEditareVideoAudio\foldercuPozePtBlending", "*.png");
             List<Image<Bgr, byte>> listImages = new List<Image<Bgr, byte>>();
             foreach (var file in FileNames)
             {
