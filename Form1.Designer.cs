@@ -44,9 +44,18 @@
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.button6 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
+            this.Video = new System.Windows.Forms.PictureBox();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.ButonVideo = new System.Windows.Forms.Button();
+            this.Background = new System.Windows.Forms.PictureBox();
+            this.button8 = new System.Windows.Forms.Button();
+            this.button9 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Video)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Background)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -62,10 +71,10 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(39, 111);
+            this.pictureBox1.Location = new System.Drawing.Point(64, 124);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(242, 116);
+            this.pictureBox1.Size = new System.Drawing.Size(114, 93);
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
@@ -88,10 +97,10 @@
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Location = new System.Drawing.Point(341, 111);
+            this.pictureBox2.Location = new System.Drawing.Point(298, 115);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(243, 116);
+            this.pictureBox2.Size = new System.Drawing.Size(195, 91);
             this.pictureBox2.TabIndex = 3;
             this.pictureBox2.TabStop = false;
             this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
@@ -190,12 +199,13 @@
             // 
             // pictureBox3
             // 
-            this.pictureBox3.Location = new System.Drawing.Point(737, 111);
+            this.pictureBox3.Location = new System.Drawing.Point(530, 115);
             this.pictureBox3.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(231, 116);
+            this.pictureBox3.Size = new System.Drawing.Size(141, 78);
             this.pictureBox3.TabIndex = 13;
             this.pictureBox3.TabStop = false;
+            this.pictureBox3.Click += new System.EventHandler(this.pictureBox3_Click);
             // 
             // button6
             // 
@@ -219,11 +229,74 @@
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
+            // Video
+            // 
+            this.Video.Location = new System.Drawing.Point(779, 93);
+            this.Video.Name = "Video";
+            this.Video.Size = new System.Drawing.Size(677, 340);
+            this.Video.TabIndex = 16;
+            this.Video.TabStop = false;
+            this.Video.Click += new System.EventHandler(this.Video_Click);
+            // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Location = new System.Drawing.Point(830, 515);
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(120, 22);
+            this.numericUpDown1.TabIndex = 17;
+            this.numericUpDown1.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
+            // 
+            // ButonVideo
+            // 
+            this.ButonVideo.Location = new System.Drawing.Point(974, 452);
+            this.ButonVideo.Name = "ButonVideo";
+            this.ButonVideo.Size = new System.Drawing.Size(193, 66);
+            this.ButonVideo.TabIndex = 18;
+            this.ButonVideo.Text = "ButonVideo";
+            this.ButonVideo.UseVisualStyleBackColor = true;
+            this.ButonVideo.Click += new System.EventHandler(this.ButonVideo_Click);
+            // 
+            // Background
+            // 
+            this.Background.Location = new System.Drawing.Point(354, 308);
+            this.Background.Name = "Background";
+            this.Background.Size = new System.Drawing.Size(349, 249);
+            this.Background.TabIndex = 19;
+            this.Background.TabStop = false;
+            this.Background.Click += new System.EventHandler(this.Background_Click);
+            this.Background.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Background_MouseDown);
+            // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(1256, 493);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(150, 80);
+            this.button8.TabIndex = 20;
+            this.button8.Text = "button8";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
+            // 
+            // button9
+            // 
+            this.button9.Location = new System.Drawing.Point(981, 559);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(118, 45);
+            this.button9.TabIndex = 21;
+            this.button9.Text = "button9";
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1190, 426);
+            this.ClientSize = new System.Drawing.Size(1497, 635);
+            this.Controls.Add(this.button9);
+            this.Controls.Add(this.button8);
+            this.Controls.Add(this.Background);
+            this.Controls.Add(this.ButonVideo);
+            this.Controls.Add(this.numericUpDown1);
+            this.Controls.Add(this.Video);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.pictureBox3);
@@ -246,6 +319,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Video)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Background)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -269,6 +345,12 @@
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.PictureBox Video;
+        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.Button ButonVideo;
+        private System.Windows.Forms.PictureBox Background;
+        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button button9;
     }
 }
 

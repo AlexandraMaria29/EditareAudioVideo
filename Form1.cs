@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,6 +26,14 @@ namespace EditProdProj
         }
         Image<Bgr, byte> MyImage;
         Image<Bgr, byte> FInalImage;
+        int TotalFrame, FrameNo;
+        double Fps;
+        bool IsReadingFrame;
+        VideoCapture capture;
+        private static VideoCapture cameraCapture;
+        private Image<Bgr, Byte> newBackgroundImage=new Image<Bgr, byte>(@"C:\Users\radaa\Documents\FACULTATE3\Capture.PNG");
+        private static IBackgroundSubtractor fgDetector;
+
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -177,6 +186,135 @@ namespace EditProdProj
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ButonVideo_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                capture = new VideoCapture(ofd.FileName);
+                Mat m = new Mat();
+                capture.Read(m);
+                Video.Image = m.ToBitmap();
+
+                TotalFrame = (int)capture.Get(CapProp.FrameCount);
+                Fps = capture.Get(CapProp.Fps);
+                FrameNo = 1;
+                numericUpDown1.Value = FrameNo;
+                numericUpDown1.Minimum = 0;
+                numericUpDown1.Maximum = TotalFrame;
+
+            }
+            if (capture == null)
+            {
+                return;
+            }
+            IsReadingFrame = true;
+            ReadAllFrames();
+            
+
+
+        }
+        private async void ProcessFrames(object sender, EventArgs e)
+        {
+            Mat frame = cameraCapture.QueryFrame();
+            Image<Bgr, byte> frameImage = frame.ToImage<Bgr, Byte>();
+
+            Mat foregroundMask = new Mat();
+            fgDetector.Apply(frame, foregroundMask);
+            var foregroundMaskImage = foregroundMask.ToImage<Gray, Byte>();
+            foregroundMaskImage = foregroundMaskImage.Not();
+
+            var copyOfNewBackgroundImage = newBackgroundImage.Resize(foregroundMaskImage.Width, foregroundMaskImage.Height, Inter.Lanczos4);
+            copyOfNewBackgroundImage = copyOfNewBackgroundImage.Copy(foregroundMaskImage);
+
+            foregroundMaskImage = foregroundMaskImage.Not();
+            frameImage = frameImage.Copy(foregroundMaskImage);
+            frameImage = frameImage.Or(copyOfNewBackgroundImage);
+
+            Background.Image = frameImage.ToBitmap();
+
+           
+
+        }
+        private async void ReadAllFrames()
+        {
+
+            Mat m = new Mat();
+            while (IsReadingFrame == true && FrameNo < TotalFrame)
+            {
+                FrameNo += 1;
+                var mat = capture.QueryFrame();
+                Video.Image = mat.ToBitmap();
+                await Task.Delay(1000 / Convert.ToInt16(Fps));
+                label1.Text = FrameNo.ToString() + "/" + TotalFrame.ToString();
+            }
+        }
+
+        private void Video_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Background_Click(object sender, EventArgs e)
+        {
+            
+
+        }
+
+        private void Background_MouseDown(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                cameraCapture = new VideoCapture();
+                fgDetector = new BackgroundSubtractorMOG2();
+                System.Windows.Forms.Application.Idle += ProcessFrames;
+            }
+            catch (Exception e1)
+            {
+                MessageBox.Show(e1.Message);
+                return;
+            }
+        }
+
+        private async void button9_Click(object sender, EventArgs e)
+        {
+             string[] FileNames = Directory.GetFiles(@"C:\Users\radaa\Documents\FACULTATE3\Capture.PNG");
+            List<Image<Bgr, byte>> listImages = new List<Image<Bgr, byte>>();
+            foreach (var file in FileNames)
+            {
+                listImages.Add(new Image<Bgr, byte>(file));
+            }
+            for (int i = 0; i < listImages.Count - 1; i++)
+            {
+                for (double alpha = 0.0; alpha <= 1.0; alpha += 0.01)
+                {
+                    Background.Image = listImages[i + 1].AddWeighted(listImages[i], alpha, 1 - alpha, 0).AsBitmap();
+                    await Task.Delay(25);
+
+                }
+            }
+        }
+
+        private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
         {
 
         }
