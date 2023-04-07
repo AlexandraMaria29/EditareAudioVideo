@@ -108,6 +108,7 @@ namespace EditProdProj
             Bgr bgr = new Bgr();
             Image<Bgr, byte> img = MyImage.Rotate(45.0, bgr);
             pictureBox2.Image = img.AsBitmap();
+            //comentariu
 
         }
 
