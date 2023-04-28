@@ -224,7 +224,12 @@ namespace EditProdProj
             }
             IsReadingFrame = true;
             ReadAllFrames();
+
+
+
             
+
+
 
 
         }
@@ -312,6 +317,42 @@ namespace EditProdProj
 
                 }
             }
+        }
+
+        private void WritingToVideo_Click(object sender, EventArgs e)
+        {
+            VideoCapture capture = new VideoCapture(@"C:\Users\radaa\Documents\FACULTATE3\FacultaSem2\LabEditareVideoAudio\First Video Star Wars Reflections 4K Unreal Engine Real-Time Ray Tracing Demonstration (360).mp4");
+
+            int Fourcc = Convert.ToInt32(capture.Get(CapProp.FourCC));
+            int Width = Convert.ToInt32(capture.Get(CapProp.FrameWidth));
+            int Height = Convert.ToInt32(capture.Get(CapProp.FrameHeight));
+            var Fps = capture.Get(CapProp.Fps);
+            var TotalFrame = capture.Get(CapProp.FrameCount);
+
+            Image<Bgr, byte> logo = new Image<Bgr, byte>(@"C:\Users\radaa\Documents\FACULTATE3\FacultaSem2\LabEditareVideoAudio\Black1.png");
+            string destinationpath = @"C:\Users\radaa\Documents\FACULTATE3\FacultaSem2\LabEditareVideoAudio\PathToOutput.mp4";
+            using (VideoWriter writer = new VideoWriter(destinationpath, Fourcc, Fps, new Size(Width, Height), true))
+            {
+
+                Mat m = new Mat();
+
+                var FrameNo = 1;
+                while (FrameNo < TotalFrame)
+                {
+                    capture.Read(m);
+                    Image<Bgr, byte> img = m.ToImage<Bgr, byte>();
+                    img.ROI = new Rectangle(10, 10, logo.Width, logo.Height);
+                    logo.CopyTo(img);
+
+                    img.ROI = Rectangle.Empty;
+
+                    writer.Write(img.Mat);
+                    FrameNo++;
+                }
+            }
+
+
+
         }
 
         private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
