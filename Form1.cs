@@ -3,6 +3,8 @@ using Emgu.CV.CvEnum;
 using Emgu.CV.DepthAI;
 using Emgu.CV.Structure;
 using Emgu.CV.UI;
+using NAudio.Wave;
+using NAudio.Wave.SampleProviders;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,6 +12,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -33,6 +36,11 @@ namespace EditProdProj
         private static VideoCapture cameraCapture;
         private Image<Bgr, Byte> newBackgroundImage=new Image<Bgr, byte>(@"C:\Users\radaa\Documents\FACULTATE3\Capture.PNG");
         private static IBackgroundSubtractor fgDetector;
+
+        private WaveOutEvent outputDevice;
+        private AudioFileReader audioFile;
+
+
 
 
         private void button1_Click(object sender, EventArgs e)
@@ -350,6 +358,100 @@ namespace EditProdProj
                     FrameNo++;
                 }
             }
+
+
+
+        }
+        private void OnPlaybackStopped(object sender, StoppedEventArgs args)
+        {
+            outputDevice.Dispose();
+            outputDevice = null;
+            audioFile.Dispose();
+            audioFile = null;
+        }
+
+        private void buttonAudio_Click(object sender, EventArgs e)
+        {
+            
+            
+                
+            if (outputDevice == null)
+            {
+                outputDevice = new WaveOutEvent();
+                outputDevice.PlaybackStopped += buttonAudio_Click;
+            }
+            if (audioFile == null)
+            {
+
+                audioFile = new AudioFileReader(@"C:\Users\radaa\Documents\FACULTATE3\FacultaSem2\LabEditareVideoAudio\FolderAudio\Stuff (mp3cut.net).mp3");
+                outputDevice.Init(audioFile);
+            }
+            outputDevice.Play();
+
+
+
+
+        }
+
+        private void buttonConversie_Click(object sender, EventArgs e)
+        { string infile = @"C:\Users\radaa\Documents\FACULTATE3\FacultaSem2\LabEditareVideoAudio\FolderAudio\Stuff (mp3cut.net).mp3";
+            string outfile = @"C:\Users\radaa\Documents\FACULTATE3\FacultaSem2\LabEditareVideoAudio\FolderAudio\ceva.wav";
+            
+            using (var reader = new Mp3FileReader(infile))
+            {
+              WaveFileWriter.CreateWaveFile(outfile, reader);
+            }
+            using (var reader = new MediaFoundationReader(infile))
+            {
+                WaveFileWriter.CreateWaveFile(outfile, reader);
+            }
+
+
+        }
+
+        private void buttonMix_Click(object sender, EventArgs e)
+        {
+            using (var reader1 = new AudioFileReader(@"C:\Users\radaa\Documents\FACULTATE3\FacultaSem2\LabEditareVideoAudio\FolderAudio\85_F_DreamStateArp_732.wav"))
+            using (var reader2 = new AudioFileReader(@"C:\Users\radaa\Documents\FACULTATE3\FacultaSem2\LabEditareVideoAudio\FolderAudio\100_D_DreamWoodblock_01_732.wav"))
+            {
+                var mixer = new MixingSampleProvider(new[] { reader1, reader2 });
+                WaveFileWriter.CreateWaveFile16(@"C:\Users\radaa\Documents\FACULTATE3\FacultaSem2\LabEditareVideoAudio\FolderAudio\mixed.wav", mixer);
+                reader1.Volume = 0.75f;
+                reader2.Volume = 0.75f;
+            }
+
+            
+
+
+        }
+
+        private void buttonMonoStereo_Click(object sender, EventArgs e)
+        {
+            var monoFilePath = @"C:\Users\radaa\Documents\FACULTATE3\FacultaSem2\LabEditareVideoAudio\FolderAudio\85_F_DreamStateArp_732.wav";
+            var outputFilePath = @"C:\Users\radaa\Documents\FACULTATE3\FacultaSem2\LabEditareVideoAudio\FolderAudio\output.wav";
+            using (var inputReader = new AudioFileReader(monoFilePath))
+            {
+                
+
+                var mono = new StereoToMonoSampleProvider(inputReader);
+
+                mono.LeftVolume = 0.0f; // silence in left channel
+                mono.RightVolume = 1.0f; // full volume in right channel
+
+                WaveFileWriter.CreateWaveFile16(outputFilePath, mono);
+            }
+           
+
+        }
+
+        private void buttonSkip_Click(object sender, EventArgs e)
+        {
+            var first = new AudioFileReader(@"C:\\Users\\radaa\\Documents\\FACULTATE3\\FacultaSem2\\LabEditareVideoAudio\\FolderAudio\\85_F_DreamStateArp_732.wav");
+            var second = new AudioFileReader(@"C:\\Users\\radaa\\Documents\\FACULTATE3\\FacultaSem2\\LabEditareVideoAudio\\FolderAudio\\100_D_DreamWoodblock_01_732.wav");
+            var third = new AudioFileReader(@"C:\Users\radaa\Documents\FACULTATE3\FacultaSem2\LabEditareVideoAudio\FolderAudio\120_F_StringChordReverse_732.wav");
+
+            var playlist = new ConcatenatingSampleProvider(new[] { first, second, third });
+            WaveFileWriter.CreateWaveFile16(@"C:\\Users\\radaa\\Documents\\FACULTATE3\\FacultaSem2\\LabEditareVideoAudio\\FolderAudio\\playlist.wav", playlist);
 
 
 

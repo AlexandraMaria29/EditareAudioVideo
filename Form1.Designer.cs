@@ -51,6 +51,11 @@
             this.button8 = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
             this.WritingToVideo = new System.Windows.Forms.Button();
+            this.buttonAudio = new System.Windows.Forms.Button();
+            this.buttonConversie = new System.Windows.Forms.Button();
+            this.buttonMix = new System.Windows.Forms.Button();
+            this.buttonMonoStereo = new System.Windows.Forms.Button();
+            this.buttonSkip = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -210,7 +215,7 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(737, 28);
+            this.button6.Location = new System.Drawing.Point(586, 24);
             this.button6.Margin = new System.Windows.Forms.Padding(2);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(85, 39);
@@ -221,7 +226,7 @@
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(889, 27);
+            this.button7.Location = new System.Drawing.Point(691, 27);
             this.button7.Margin = new System.Windows.Forms.Padding(2);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(85, 39);
@@ -232,16 +237,16 @@
             // 
             // Video
             // 
-            this.Video.Location = new System.Drawing.Point(779, 93);
+            this.Video.Location = new System.Drawing.Point(426, 227);
             this.Video.Name = "Video";
-            this.Video.Size = new System.Drawing.Size(677, 340);
+            this.Video.Size = new System.Drawing.Size(261, 151);
             this.Video.TabIndex = 16;
             this.Video.TabStop = false;
             this.Video.Click += new System.EventHandler(this.Video_Click);
             // 
             // numericUpDown1
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(830, 515);
+            this.numericUpDown1.Location = new System.Drawing.Point(442, 399);
             this.numericUpDown1.Name = "numericUpDown1";
             this.numericUpDown1.Size = new System.Drawing.Size(120, 22);
             this.numericUpDown1.TabIndex = 17;
@@ -249,7 +254,7 @@
             // 
             // ButonVideo
             // 
-            this.ButonVideo.Location = new System.Drawing.Point(974, 452);
+            this.ButonVideo.Location = new System.Drawing.Point(393, 457);
             this.ButonVideo.Name = "ButonVideo";
             this.ButonVideo.Size = new System.Drawing.Size(193, 66);
             this.ButonVideo.TabIndex = 18;
@@ -259,7 +264,7 @@
             // 
             // Background
             // 
-            this.Background.Location = new System.Drawing.Point(354, 308);
+            this.Background.Location = new System.Drawing.Point(38, 324);
             this.Background.Name = "Background";
             this.Background.Size = new System.Drawing.Size(349, 249);
             this.Background.TabIndex = 19;
@@ -269,7 +274,7 @@
             // 
             // button8
             // 
-            this.button8.Location = new System.Drawing.Point(1256, 493);
+            this.button8.Location = new System.Drawing.Point(606, 399);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(150, 80);
             this.button8.TabIndex = 20;
@@ -279,7 +284,7 @@
             // 
             // button9
             // 
-            this.button9.Location = new System.Drawing.Point(981, 559);
+            this.button9.Location = new System.Drawing.Point(426, 529);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(118, 45);
             this.button9.TabIndex = 21;
@@ -289,7 +294,7 @@
             // 
             // WritingToVideo
             // 
-            this.WritingToVideo.Location = new System.Drawing.Point(777, 579);
+            this.WritingToVideo.Location = new System.Drawing.Point(426, 427);
             this.WritingToVideo.Name = "WritingToVideo";
             this.WritingToVideo.Size = new System.Drawing.Size(157, 24);
             this.WritingToVideo.TabIndex = 22;
@@ -297,11 +302,66 @@
             this.WritingToVideo.UseVisualStyleBackColor = true;
             this.WritingToVideo.Click += new System.EventHandler(this.WritingToVideo_Click);
             // 
+            // buttonAudio
+            // 
+            this.buttonAudio.Location = new System.Drawing.Point(1024, 115);
+            this.buttonAudio.Name = "buttonAudio";
+            this.buttonAudio.Size = new System.Drawing.Size(144, 63);
+            this.buttonAudio.TabIndex = 23;
+            this.buttonAudio.Text = "buttonAudio";
+            this.buttonAudio.UseVisualStyleBackColor = true;
+            this.buttonAudio.Click += new System.EventHandler(this.buttonAudio_Click);
+            // 
+            // buttonConversie
+            // 
+            this.buttonConversie.Location = new System.Drawing.Point(911, 125);
+            this.buttonConversie.Name = "buttonConversie";
+            this.buttonConversie.Size = new System.Drawing.Size(78, 34);
+            this.buttonConversie.TabIndex = 24;
+            this.buttonConversie.Text = "buttonConversie";
+            this.buttonConversie.UseVisualStyleBackColor = true;
+            this.buttonConversie.Click += new System.EventHandler(this.buttonConversie_Click);
+            // 
+            // buttonMix
+            // 
+            this.buttonMix.Location = new System.Drawing.Point(1014, 37);
+            this.buttonMix.Name = "buttonMix";
+            this.buttonMix.Size = new System.Drawing.Size(144, 63);
+            this.buttonMix.TabIndex = 25;
+            this.buttonMix.Text = "buttonMix";
+            this.buttonMix.UseVisualStyleBackColor = true;
+            this.buttonMix.Click += new System.EventHandler(this.buttonMix_Click);
+            // 
+            // buttonMonoStereo
+            // 
+            this.buttonMonoStereo.Location = new System.Drawing.Point(1024, 184);
+            this.buttonMonoStereo.Name = "buttonMonoStereo";
+            this.buttonMonoStereo.Size = new System.Drawing.Size(144, 63);
+            this.buttonMonoStereo.TabIndex = 26;
+            this.buttonMonoStereo.Text = "buttonMonoStereo";
+            this.buttonMonoStereo.UseVisualStyleBackColor = true;
+            this.buttonMonoStereo.Click += new System.EventHandler(this.buttonMonoStereo_Click);
+            // 
+            // buttonSkip
+            // 
+            this.buttonSkip.Location = new System.Drawing.Point(1014, 264);
+            this.buttonSkip.Name = "buttonSkip";
+            this.buttonSkip.Size = new System.Drawing.Size(144, 63);
+            this.buttonSkip.TabIndex = 27;
+            this.buttonSkip.Text = "buttonSkip";
+            this.buttonSkip.UseVisualStyleBackColor = true;
+            this.buttonSkip.Click += new System.EventHandler(this.buttonSkip_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1497, 635);
+            this.ClientSize = new System.Drawing.Size(1722, 635);
+            this.Controls.Add(this.buttonSkip);
+            this.Controls.Add(this.buttonMonoStereo);
+            this.Controls.Add(this.buttonMix);
+            this.Controls.Add(this.buttonConversie);
+            this.Controls.Add(this.buttonAudio);
             this.Controls.Add(this.WritingToVideo);
             this.Controls.Add(this.button9);
             this.Controls.Add(this.button8);
@@ -364,6 +424,11 @@
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Button WritingToVideo;
+        private System.Windows.Forms.Button buttonAudio;
+        private System.Windows.Forms.Button buttonConversie;
+        private System.Windows.Forms.Button buttonMix;
+        private System.Windows.Forms.Button buttonMonoStereo;
+        private System.Windows.Forms.Button buttonSkip;
     }
 }
 
