@@ -1,6 +1,5 @@
-﻿using EditProdProj.IMAGE;
+﻿using Emgu.CV.Structure;
 using Emgu.CV;
-using Emgu.CV.Structure;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,16 +9,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Net.Mime.MediaTypeNames;
+using Emgu.CV.UI;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
-namespace EditProdProj
+namespace EditProdProj.IMAGE
 {
-    public partial class Form1 : Form
+    public partial class FormImagine : Form
     {
-        private imagine ImageProcessor =new imagine();
-        public Form1()
+        private imagine ImageProcessor { get; set; }
+
+        public FormImagine()
         {
             InitializeComponent();
             ImageProcessor.setPictureBox(pictureBox1);
+        }
+
+        private void FormImagine_Load(object sender, EventArgs e)
+        {
+
         }
 
         private void loadImage_Click(object sender, EventArgs e)
@@ -63,13 +71,6 @@ namespace EditProdProj
             double alphaValue = Double.Parse(alpha);
             double betaValue = Double.Parse(beta);
             ImageProcessor.AdjustBrightness(alphaValue, betaValue);
-        }
-
-        private void buttonNewForm_Click(object sender, EventArgs e)
-        {
-            Form2 f2 = new Form2();
-            f2.Show();
-            Visible = false;
         }
     }
 }
